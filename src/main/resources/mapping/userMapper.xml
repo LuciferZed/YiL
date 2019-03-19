@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yijie.yilian.dao.UserMapper">
+
+<!-- 条件拼接 -->
+<sql id="user_where">
+        <where>
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="uuid != null and uuid != ''">
+            and uuid = #{uuid}
+        </if>
+        <if test="num != null and num != ''">
+            and num = #{num}
+        </if>
+        </where>
+    </sql>
+    
+    <insert id="userInsert" parameterType="com.yijie.yilian.model.User">
+        insert into yl_user(uuid,num,password,name,balance) value(#{uuid},#{num},#{password},#{name},0)
+    </insert>
+    
+    <select id="userSelect" parameterType="com.yijie.yilian.model.User" resultType="com.yijie.yilian.model.User">
+        select * from yl_user
+        <include refid="user_where"></include>
+    </select>
+    
+    <update id="userUpdate" parameterType="com.yijie.yilian.model.User">
+        update yl_user
+    <trim prefix="set" suffixOverrides=",">
+        <if test="password != null and password != ''">password = #{password},</if>
+        <if test="name != null and name != ''">name = #{name},</if>
+        <if test="balance != null and balance != ''">balance = #{balance},</if>
+    </trim>
+    <include refid="user_where"></include>
+    </update>
+    
+    <delete id="userDelete" parameterType="com.yijie.yilian.model.User">
+        delete from yl_user
+        <include refid="user_where"></include>
+    </delete>
+
+</mapper>

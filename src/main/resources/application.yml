@@ -1,0 +1,29 @@
+# 端口配置
+server:
+  port: 8080
+  
+# 连接池配置
+spring:
+    datasource:
+        name: yl
+        url: jdbc:mysql://127.0.0.1:3306/yl?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+        password: 4444
+        driver-class-name: com.mysql.cj.jdbc.Driver
+# 连接池使用德鲁伊连接池
+        type: com.alibaba.druid.pool.DruidDataSource
+
+# redis配置
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        timeout: 2000
+        pool:
+          max-active: 8
+          max-wait: 1
+          max-idle: 8
+          min-idle: 0
+        
+# mybatis mapper文件扫描配置        
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
