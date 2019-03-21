@@ -1,5 +1,7 @@
 package com.yijie.yilian.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yijie.yilian.model.PhoneRev;
 import com.yijie.yilian.model.User;
 import com.yijie.yilian.service.UserHandleService;
+import com.yijie.yilian.utils.PhoneExist;
 
 /**
  * @描述 用户功能块
@@ -24,6 +28,12 @@ public class UserHandleController {
 	@Autowired
 	private UserHandleService userHandleService;
 	
+	@Autowired
+	private PhoneExist phoneExist;
+	
+	@Autowired
+	private PhoneRev pr;
+	
 	/**
 	 * @描述 用户登录
 	 * @param user
@@ -32,7 +42,6 @@ public class UserHandleController {
 	@RequestMapping("/userLogin")
 	@ResponseBody
 	public Map<String,Object> userLogin(@RequestBody User user){
-		System.err.println(user);
 		Map<String,Object> result = new HashMap<String,Object>();
 		User u = userHandleService.userLogin(user);
 		if(u == null){
@@ -72,5 +81,29 @@ public class UserHandleController {
 		result.put("code", code);
 		return result;
 	}
+	
+	/**
+	 * @描述 手机验证码请求
+	 * @param num
+	 * @return
+	 */
+	@RequestMapping("noterev")
+	@ResponseBody
+	public Map<String,Object> noteRev(@RequestBody String num){
+		Map<String,Object> result = new HashMap<String,Object>();
+		String rev = phoneExist.noteRev(num);
+		Integer code = 1;
+		if(rev == null){
+			code = 0;
+		}
+		SimpleDateFormat dateFm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time =dateFm.format(new Date());
+		pr = new PhoneRev(rev, time);
+		result.put("code", code);
+		return result;
+	}
+	
+	
+	
 
 }

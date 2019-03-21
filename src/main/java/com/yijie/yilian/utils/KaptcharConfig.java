@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 
+/**
+ * @描述 kaptcha配置
+ * @author Lucifer
+ *
+ */
 @Component
 public class KaptcharConfig {
 
@@ -26,7 +31,6 @@ public class KaptcharConfig {
 		properties.setProperty("kaptcha.textproducer.font.names", "宋体,楷体,微软雅黑");
 		Config config = new Config(properties);
 		defaultKaptcha.setConfig(config);
-
 		return defaultKaptcha;
 	}
 }
