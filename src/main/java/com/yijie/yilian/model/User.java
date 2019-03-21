@@ -13,7 +13,13 @@ public class User {
 	//系统生成uuid
 	private String uuid;
 	
-	//账户账号
+	//账户微信登录对应openID
+	private String openid;
+	
+	//账户QQ登录对应UID
+	private String QQuid;
+	
+	//账户电话号码（登录账号）
 	private String num;
 	
 	//账户密码
@@ -22,11 +28,11 @@ public class User {
 	//账户名称（个人/公司）
 	private String name;
 	
-	//账户电话号码
-	private String phone;
-	
 	//账户积分余额
 	private Integer balance;
+	
+	//账户级别（个人/公司）
+	private Integer level;
 
 	public Integer getId() {
 		return id;
@@ -42,6 +48,22 @@ public class User {
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+
+	public String getQQuid() {
+		return QQuid;
+	}
+
+	public void setQQuid(String qQuid) {
+		QQuid = qQuid;
 	}
 
 	public String getNum() {
@@ -68,14 +90,6 @@ public class User {
 		this.name = name;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
 	public Integer getBalance() {
 		return balance;
 	}
@@ -84,10 +98,18 @@ public class User {
 		this.balance = balance;
 	}
 
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", uuid=" + uuid + ", num=" + num + ", password=" + password + ", name=" + name
-				+ ", phone=" + phone + ", balance=" + balance + "]";
+		return "User [id=" + id + ", uuid=" + uuid + ", openid=" + openid + ", QQuid=" + QQuid + ", num=" + num
+				+ ", password=" + password + ", name=" + name + ", balance=" + balance + ", level=" + level + "]";
 	}
 
 	public User() {
@@ -95,15 +117,18 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(Integer id, String uuid, String num, String password, String name, String phone, Integer balance) {
+	public User(Integer id, String uuid, String openid, String qQuid, String num, String password, String name,
+			Integer balance, Integer level) {
 		super();
 		this.id = id;
 		this.uuid = uuid;
+		this.openid = openid;
+		QQuid = qQuid;
 		this.num = num;
 		this.password = password;
 		this.name = name;
-		this.phone = phone;
 		this.balance = balance;
+		this.level = level;
 	}
 
 }

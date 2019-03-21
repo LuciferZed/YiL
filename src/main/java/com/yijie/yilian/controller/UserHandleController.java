@@ -58,20 +58,6 @@ public class UserHandleController {
 		return result;
 	}
 	
-	/**
-	 * @描述 验证用户账号是否已注册（如果已存在返回错误编码0，不存在返回成功编码1）
-	 * @param num
-	 * @return
-	 */
-	@RequestMapping("/userNumExist")
-	@ResponseBody
-	public Map<String,Object> userNumExist(@RequestBody String num){
-		Map<String,Object> result = new HashMap<String,Object>();
-		Integer code = userHandleService.userNumExist(num);
-		result.put("code", code);
-		return result;
-	}
-	
 	
 	/**
 	 * @描述 验证用户账号是否已注册（如果已存在返回错误编码0，不存在返回成功编码1）
@@ -80,9 +66,9 @@ public class UserHandleController {
 	 */
 	@RequestMapping("/userPhoneExist")
 	@ResponseBody
-	public Map<String,Object> userPhoneExist(@RequestBody String phone){
+	public Map<String,Object> userPhoneExist(@RequestBody String num){
 		Map<String,Object> result = new HashMap<String,Object>();
-		Integer code = userHandleService.userPhoneExist(phone);
+		Integer code = userHandleService.userPhoneExist(num);
 		result.put("code", code);
 		return result;
 	}

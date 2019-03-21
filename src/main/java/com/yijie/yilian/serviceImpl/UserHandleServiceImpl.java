@@ -46,25 +46,12 @@ public class UserHandleServiceImpl implements UserHandleService {
 		return result;
 	}
 
-	//验证用户账号是否已注册（如果已存在返回错误编码0，不存在返回成功编码1）
+	//验证用户电话号码是否已使用（如果已存在返回错误编码0，不存在返回成功编码1）
 	@Override
-	public Integer userNumExist(String num) {
+	public Integer userPhoneExist(String num) {
 		Integer result = 0;
 		User u = new User();
 		u.setNum(num);
-		List<User> userLisst = userMapper.userSelect(u);
-		if(userLisst.isEmpty()){
-			result = 1;
-		}
-		return result;
-	}
-
-	//验证用户电话号码是否已使用（如果已存在返回错误编码0，不存在返回成功编码1）
-	@Override
-	public Integer userPhoneExist(String phone) {
-		Integer result = 0;
-		User u = new User();
-		u.setPhone(phone);
 		List<User> userLisst = userMapper.userSelect(u);
 		if(userLisst.isEmpty()){
 			result = 1;

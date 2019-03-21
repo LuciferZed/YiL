@@ -10,10 +10,7 @@ public interface UserHandleService {
 	//用户注册
 	public Integer userRegist(User user);
 	
-	//验证用户账号是否存在
-	public Integer userNumExist(String num);
-	
 	//验证用户电话号码是否已使用
-	public Integer userPhoneExist(String phone);
+	public Integer userPhoneExist(String num);
 
 }
