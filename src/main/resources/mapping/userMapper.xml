@@ -17,11 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <if test="num != null and num != ''">
             and num = #{num}
         </if>
+        <if test="phone != null and phone != ''">
+            and phone = #{phone}
+        </if>
         </where>
     </sql>
     
     <insert id="userInsert" parameterType="com.yijie.yilian.model.User">
-        insert into yl_user(uuid,num,password,name,balance) value(#{uuid},#{num},#{password},#{name},0)
+        insert into yl_user(uuid,num,password,name,phone,balance) value(#{uuid},#{num},#{password},#{name},#{phone},0)
     </insert>
     
     <select id="userSelect" parameterType="com.yijie.yilian.model.User" resultType="com.yijie.yilian.model.User">
@@ -34,6 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <trim prefix="set" suffixOverrides=",">
         <if test="password != null and password != ''">password = #{password},</if>
         <if test="name != null and name != ''">name = #{name},</if>
+        <if test="phone != null and phone != ''">phone = #{phone},</if>
         <if test="balance != null and balance != ''">balance = #{balance},</if>
     </trim>
     <include refid="user_where"></include>

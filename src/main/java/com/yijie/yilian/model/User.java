@@ -22,6 +22,9 @@ public class User {
 	//账户名称（个人/公司）
 	private String name;
 	
+	//账户电话号码
+	private String phone;
+	
 	//账户积分余额
 	private Integer balance;
 
@@ -33,11 +36,11 @@ public class User {
 		this.id = id;
 	}
 
-	public String getuuid() {
+	public String getUuid() {
 		return uuid;
 	}
 
-	public void setuuid(String uuid) {
+	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
@@ -65,6 +68,14 @@ public class User {
 		this.name = name;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public Integer getBalance() {
 		return balance;
 	}
@@ -76,7 +87,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", uuid=" + uuid + ", num=" + num + ", password=" + password + ", name=" + name
-				+ ", balance=" + balance + "]";
+				+ ", phone=" + phone + ", balance=" + balance + "]";
 	}
 
 	public User() {
@@ -84,16 +95,15 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(Integer id, String uuid, String num, String password, String name, Integer balance) {
+	public User(Integer id, String uuid, String num, String password, String name, String phone, Integer balance) {
 		super();
 		this.id = id;
 		this.uuid = uuid;
 		this.num = num;
 		this.password = password;
 		this.name = name;
+		this.phone = phone;
 		this.balance = balance;
 	}
-	
-	
 
 }
