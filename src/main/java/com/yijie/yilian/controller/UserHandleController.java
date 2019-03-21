@@ -1,5 +1,6 @@
 package com.yijie.yilian.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -87,7 +88,7 @@ public class UserHandleController {
 	 * @param num
 	 * @return
 	 */
-	@RequestMapping("noterev")
+	@RequestMapping("/noteReq")
 	@ResponseBody
 	public Map<String,Object> noteRev(@RequestBody String num){
 		Map<String,Object> result = new HashMap<String,Object>();
@@ -103,7 +104,44 @@ public class UserHandleController {
 		return result;
 	}
 	
-	
-	
+	/**
+	 * @描述 手机短信验证码认证
+	 * @param rev
+	 * @return
+	 */
+	@RequestMapping("/noteRev")
+	@ResponseBody
+	public Map<String,Object> phoneRev(@RequestBody String rev){
+		Map<String,Object> result = new HashMap<String,Object>();
+		Integer code = 1;
+		String msg = null;
+		System.out.println(rev);
+		SimpleDateFormat dateFm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time =dateFm.format(new Date());
+		long after;
+		try {
+			//验证码提交时间
+			after = dateFm.parse(time).getTime();
+			//验证码生成时间
+			long behind = dateFm.parse(pr.getTime()).getTime();
+			//验证码有效时间判定
+			int minutes = (int) ((after - behind)/(1000 * 60));
+			//判断验证码是否过期
+			if(minutes >= 5){
+				code = 0;
+				msg = "该验证码已失效！";
+			//判断验证码是否正确
+			}else if(!rev.equals(pr.getRev())){
+				code = 0;
+				msg = "验证码错误！";
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		result.put("code", code);
+		result.put("msg", msg);
+		return result;
+	}
 
 }
